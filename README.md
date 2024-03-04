@@ -29,30 +29,15 @@ width: dialPadSize,
 
 ```js
 {text === "del" ? (
-          <MaterialIcons name="backspace" size={dialPadSize/2} />
-        )
+    <MaterialIcons name="backspace" size={dialPadSize/2} />
+)
 ```
 
-### Adding item with usestate:
+### Creating array from a limit value:
 
 ```js
-const addTodoHandler = (text) => {
-    if (text.length <= 3) {
-      Alert.alert("Oops!", "Input length should be greater than 3", [
-        {
-          text: "Understood",
-          onPress: () => {
-            console.log("Alert closed");
-          },
-        },
-      ]);
-    } else {
-      setTodos((prevTodos) => [
-        { todo: text, id: Math.random().toString() },
-        ...prevTodos,
-      ]);
-    }
-  };
+let keys = [...Array(numberLimit).keys()].map((i) => i + 1);
+keys = [...keys, ".", 0, "del"];
 ```
 ### Dismissing keyboard:
 
