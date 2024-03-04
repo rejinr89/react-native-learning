@@ -1,10 +1,11 @@
+# Todo List App
+
 <img width="300px" src="todolist-screenshot.jpg" alt="image_name png" />
+The project was created as part of learning Netninja React Native tutorial.
 
-# Foobar
+## Learnings
 
-Foobar is a Python library for dealing with word pluralization.
-
-## Installation
+Observed difference in adding padding to containers and text inside it, doesn't work exactly like web.
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 
