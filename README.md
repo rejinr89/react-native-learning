@@ -8,18 +8,21 @@ https://www.youtube.com/watch?v=PaRyx0CUTnI
 
 ## Learnings
 
--Observed difference in adding padding to containers and text inside it, doesn't work exactly like web.
-
--borderStyle:'dashed'
-
-### Flatlist
+### Adjusting space with respect to app dimension
 ```js
-<FlatList
-          data={todos}
-          renderItem={({ item }) => (
-            <TodoItem item={item} itemClickHandler={itemClickHandler} />
-          )}
-/>
+import {
+  Dimensions,
+} from "react-native";
+
+const { width, height } = Dimensions.get("window");
+
+const dialPadSize = width * 0.2;
+
+<MaterialIcons name="backspace" size={dialPadSize/2} />
+
+width: dialPadSize,
+    height: dialPadSize,
+    borderRadius: dialPadSize / 2,
 ```
 
 -borderBottomWidth:1, borderBottomColor:'#ccc'
