@@ -20,6 +20,11 @@ The project was created as part of learning Netninja React Native tutorial.
 />
 ```
 
+-borderBottomWidth:1, borderBottomColor:'#ccc'
+
+###deleting item with usestate and filter:
+
+
 ## Usage
 
 ```python
