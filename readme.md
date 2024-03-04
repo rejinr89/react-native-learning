@@ -6,10 +6,10 @@ The project was created as part of learning Netninja React Native tutorial.
 ## Learnings
 
 -Observed difference in adding padding to containers and text inside it, doesn't work exactly like web.
+
 -borderStyle:'dashed'
 
 ### Flatlist
-
 ```js
 <FlatList
           data={todos}
