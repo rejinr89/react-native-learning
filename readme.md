@@ -9,8 +9,15 @@ The project was created as part of learning Netninja React Native tutorial.
 
 -borderStyle:'dashed'
 
+### Flatlist
+
 ```bash
-pip install foobar
+<FlatList
+          data={todos}
+          renderItem={({ item }) => (
+            <TodoItem item={item} itemClickHandler={itemClickHandler} />
+          )}
+/>
 ```
 
 ## Usage
