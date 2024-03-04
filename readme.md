@@ -3,6 +3,8 @@
 <img width="300px" src="todolist-screenshot.jpg" alt="image_name png" />
 The project was created as part of learning Netninja React Native tutorial.
 
+https://www.youtube.com/watch?v=uLHFPt9B2Os&list=PL4cUxeGkcC9ixPU-QkScoRBVxtPPzVjrQ&index=9
+
 ## Learnings
 
 -Observed difference in adding padding to containers and text inside it, doesn't work exactly like web.
