@@ -1,4 +1,4 @@
-![Screenshot](todolist-screenshot.jpg)
+<img width="30px" src="todolist-screenshot.jpg" alt="image_name png" />
 # Foobar
 
 Foobar is a Python library for dealing with word pluralization.
