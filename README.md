@@ -1,8 +1,10 @@
-https://www.youtube.com/watch?v=PaRyx0CUTnI
-# Todo List App
+# Security Lock Screen App
 
-<img width="300px" src="todolist-screenshot.jpg" alt="image_name png" />
-The project was created as part of learning Netninja React Native tutorial.
+<img width="300px" src="lockscreenapp-screenshot.jpg" alt="image_name png" />
+The project was created as part of learning React Native tutorial in the youtube channel Flaira:
+
+https://www.youtube.com/watch?v=PaRyx0CUTnI
+
 
 ## Learnings
 
