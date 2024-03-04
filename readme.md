@@ -11,7 +11,7 @@ The project was created as part of learning Netninja React Native tutorial.
 
 ### Flatlist
 
-```bash
+```js
 <FlatList
           data={todos}
           renderItem={({ item }) => (
@@ -22,10 +22,35 @@ The project was created as part of learning Netninja React Native tutorial.
 
 -borderBottomWidth:1, borderBottomColor:'#ccc'
 
-###deleting item with usestate and filter:
+### Deleting item with usestate and filter:
 
+```js
+const itemClickHandler = (id) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id != id));
+  };
+```
 
-## Usage
+### Adding item with usestate:
+
+```js
+const addTodoHandler = (text) => {
+    if (text.length <= 3) {
+      Alert.alert("Oops!", "Input length should be greater than 3", [
+        {
+          text: "Understood",
+          onPress: () => {
+            console.log("Alert closed");
+          },
+        },
+      ]);
+    } else {
+      setTodos((prevTodos) => [
+        { todo: text, id: Math.random().toString() },
+        ...prevTodos,
+      ]);
+    }
+  };
+```
 
 ```python
 import foobar
