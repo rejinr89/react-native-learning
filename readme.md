@@ -51,6 +51,19 @@ const addTodoHandler = (text) => {
     }
   };
 ```
+### Dismissing keyboard:
+
+```js
+<TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
+```
+
+### Adding Icon
+
+```js
+import { MaterialIcons } from "@expo/vector-icons"; //preinstalled
+
+<MaterialIcons name="delete" size={20} color='#333'/>
+```
 
 ```python
 import foobar
