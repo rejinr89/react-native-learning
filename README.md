@@ -25,7 +25,7 @@ width: dialPadSize,
     borderRadius: dialPadSize / 2,
 ```
 
-### Deleting item with backspace button:
+### Adding material icon for backspace:
 
 ```js
 {text === "del" ? (
@@ -39,16 +39,37 @@ width: dialPadSize,
 let keys = [...Array(numberLimit).keys()].map((i) => i + 1);
 keys = [...keys, ".", 0, "del"];
 ```
-### Dismissing keyboard:
+
+### Implementing backspace functionality:
 
 ```js
-<TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
+const keyPressHandler = (text) => {
+    if (text === "del") {
+      setPinCode((prevPassText) =>
+        prevPassText.slice(0, prevPassText.length - 1)
+      );
+    }else{
+      setPinCode((prevPassText) => {
+        if (prevPassText.length < lockLength) {
+          return [...prevPassText, text];
+        }
+      });
+    }
+  };
 ```
 
-### Adding Icon
+### Creating circular display
 
 ```js
-import { MaterialIcons } from "@expo/vector-icons"; //preinstalled
-
-<MaterialIcons name="delete" size={20} color='#333'/>
+<View style={styles.lock}>
+        {[...Array(lockLength).keys()].map((i) => {
+          const isSelected = !!pinCode[i];
+          return (
+            <View
+              key={i}
+              style={[styles.lockContainer, { height: isSelected ? 20 : 2 }]}
+            ></View>
+          );
+        })}
+      </View>
 ```
