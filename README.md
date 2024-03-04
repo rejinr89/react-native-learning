@@ -25,14 +25,12 @@ width: dialPadSize,
     borderRadius: dialPadSize / 2,
 ```
 
--borderBottomWidth:1, borderBottomColor:'#ccc'
-
-### Deleting item with usestate and filter:
+### Deleting item with backspace button:
 
 ```js
-const itemClickHandler = (id) => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id != id));
-  };
+{text === "del" ? (
+          <MaterialIcons name="backspace" size={dialPadSize/2} />
+        )
 ```
 
 ### Adding item with usestate:
