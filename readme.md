@@ -1,1 +1,1 @@
-![Screenshot](todolist-screenshot.jpg)
+![Screenshot width='200'](todolist-screenshot.jpg)
