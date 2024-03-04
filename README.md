@@ -71,5 +71,30 @@ const keyPressHandler = (text) => {
             ></View>
           );
         })}
-      </View>
+</View>
+```
+
+### Creating Keypad
+```js
+<View style={styles.keypadContainer}>
+        <FlatList
+          data={keys}
+          numColumns={3}
+          renderItem={({ item }) => (
+            <NumPadKey text={item} keyPressHandler={keyPressHandler} />
+          )}
+          columnWrapperStyle={{ gap: 20 }}
+          contentContainerStyle={{ gap: 20 }}
+        />
+</View>
+```
+
+### Verifying PIN
+```js
+useEffect(()=>{
+    console.log(pinCode.join(""));
+    if(pinCode.join("")==pin){
+      Alert.alert('Hurray','Pin Match');
+    }
+},[pinCode])
 ```
