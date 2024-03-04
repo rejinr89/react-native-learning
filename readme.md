@@ -5,9 +5,8 @@ The project was created as part of learning Netninja React Native tutorial.
 
 ## Learnings
 
-Observed difference in adding padding to containers and text inside it, doesn't work exactly like web.
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+-Observed difference in adding padding to containers and text inside it, doesn't work exactly like web.
+-borderStyle:'dashed'
 
 ```bash
 pip install foobar
