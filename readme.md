@@ -46,76 +46,86 @@ const fetchData = async (url) => {
   };
 ```
 
-### Adding material icon for backspace:
+### Chcecking for error and displaying error info:
 
 ```js
-{text === "del" ? (
-    <MaterialIcons name="backspace" size={dialPadSize/2} />
-)
-```
-
-### Creating array from a limit value:
-
-```js
-let keys = [...Array(numberLimit).keys()].map((i) => i + 1);
-keys = [...keys, ".", 0, "del"];
-```
-
-### Implementing backspace functionality:
-
-```js
-const keyPressHandler = (text) => {
-    if (text === "del") {
-      setPinCode((prevPassText) =>
-        prevPassText.slice(0, prevPassText.length - 1)
-      );
-    }else{
-      setPinCode((prevPassText) => {
-        if (prevPassText.length < lockLength) {
-          return [...prevPassText, text];
+{isError ? 
+          <View>
+            <Text style={{textAlign:'center'}}>Error in Loading....</Text>
+          </View>
+         : 
+         <View>
+            <FlatList
+              data={userInfo}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({ item }) => <Card item={item} />}
+            />
+          </View>
         }
-      });
-    }
+```
+
+### Organising card in rows and columns:
+
+```js
+const Card = ({ item }) => {
+  return (
+    <View style={styles.cardContainer} >
+      <Image
+        style={styles.avatarImage}
+        source={{ uri: item.picture.thumbnail }}
+      />
+      <View style={styles.textContainer}>
+        <Text style={styles.textName}>
+          {item.name.first + " " + item.name.last}
+        </Text>
+        <Text style={styles.textEmail}>{item.email}</Text>
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  cardContainer: {
+    flexDirection: "row",
+    marginBottom: 10,
+    backgroundColor: "rgba(200,200,200,0.1)",
+    padding: 10,
+  },
+  avatarImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginRight: 10,
+  },
+  textContainer: {
+    justifyContent: "center",
+  },
+  textName: {
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "left",
+  },
+});
+```
+
+### Implementing search functionality with lodash.filter:
+
+```js
+const changeTextHandler = (query) => {
+    setSearchText(query);
+    const formattedQuery=query.toLowerCase();
+    const filteredData=filter(tempUserInfo,(user)=>{
+      return contains(user,formattedQuery);
+    })
+    setUserInfo(filteredData);
   };
-```
 
-### Creating circular display
-
-```js
-<View style={styles.lock}>
-        {[...Array(lockLength).keys()].map((i) => {
-          const isSelected = !!pinCode[i];
-          return (
-            <View
-              key={i}
-              style={[styles.lockContainer, { height: isSelected ? 20 : 2 }]}
-            ></View>
-          );
-        })}
-</View>
-```
-
-### Creating Keypad
-```js
-<View style={styles.keypadContainer}>
-        <FlatList
-          data={keys}
-          numColumns={3}
-          renderItem={({ item }) => (
-            <NumPadKey text={item} keyPressHandler={keyPressHandler} />
-          )}
-          columnWrapperStyle={{ gap: 20 }}
-          contentContainerStyle={{ gap: 20 }}
-        />
-</View>
-```
-
-### Verifying PIN
-```js
-useEffect(()=>{
-    console.log(pinCode.join(""));
-    if(pinCode.join("")==pin){
-      Alert.alert('Hurray','Pin Match');
+  const contains=({name,email},query)=>{
+    const {first,last}=name;
+    if(first.includes(query)||last.includes(query)||email.includes(query)){
+      return true;
+    }else{
+      return false;
     }
-},[pinCode])
+  }
 ```
