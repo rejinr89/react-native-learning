@@ -1,10 +1,9 @@
-# Security Lock Screen App
+# Search Filter App
 
 <img width="300px" src="search-filter-screenshot.jpg" alt="image_name png" />
-The project was created as part of learning React Native tutorial in the youtube channel Flaira:
+The project was created as part of learning React Native tutorial from the youtube channel Pradip Debnath:
 
-https://www.youtube.com/watch?v=PaRyx0CUTnI
-
+[https://www.youtube.com/watch?v=PaRyx0CUTnI](https://www.youtube.com/watch?v=Q4S9M9rJAxk)
 
 ## Learnings
 
