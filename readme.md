@@ -5,23 +5,45 @@ The project was created as part of learning React Native tutorial from the youtu
 
 [https://www.youtube.com/watch?v=PaRyx0CUTnI](https://www.youtube.com/watch?v=Q4S9M9rJAxk)
 
-## Learnings
+## Learning
 
-### Adjusting space with respect to app dimension
+### Fetching data onload and updating splash screen upon loading completed
 ```js
-import {
-  Dimensions,
-} from "react-native";
+const API_END_POINT = "https://randomuser.me/api/?results=30";
 
-const { width, height } = Dimensions.get("window");
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await SplashScreen.preventAutoHideAsync();
+        fetchData(API_END_POINT);
+      } catch (e) {
+        setIsError(true)
+        console.log(e);
+      } finally {
+        setIsReady(true);
+      }
+    }
+    prepare();
+  }, []);
 
-const dialPadSize = width * 0.2;
+  useEffect(() => {
+    SplashScreen.hideAsync();
+  }, [isReady]);
 
-<MaterialIcons name="backspace" size={dialPadSize/2} />
-
-width: dialPadSize,
-    height: dialPadSize,
-    borderRadius: dialPadSize / 2,
+const fetchData = async (url) => {
+      fetch(url)
+        .then((response) => response.json())
+        .then((result) => {
+          setUserInfo(result.results);
+          setTempUserInfo(result.results);
+          setIsError(false);
+          setIsLoading(false);
+          console.log(userInfo);
+        }).catch(e=>{
+          console.log(e);
+          setIsError(true);
+        })
+  };
 ```
 
 ### Adding material icon for backspace:
