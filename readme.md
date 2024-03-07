@@ -4,7 +4,7 @@
 <img width="300px" src="custom-modal-screenshot2.jpg" alt="image_name png" />
 The project was created as part of learning React Native tutorial from the youtube channel Pradip Debnath:
 
-[https://www.youtube.com/watch?v=PaRyx0CUTnI](https://www.youtube.com/watch?v=Q4S9M9rJAxk)
+https://www.youtube.com/watch?v=PaRyx0CUTnI](https://www.youtube.com/watch?v=Q4S9M9rJAxk)](https://www.youtube.com/watch?v=u79-3aqAsBY)
 
 ## Learning
 
