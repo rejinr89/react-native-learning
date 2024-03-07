@@ -1,10 +1,32 @@
-import { Modal, Text, StyleSheet, View, Image, TouchableOpacity} from "react-native";
+import { Modal, Text, StyleSheet, View, Image, TouchableOpacity, Animated} from "react-native";
+import {useEffect,useRef,useState} from 'react';
 
 const ModalPopUp = ({visible,toggleModalHandler}) => {
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+    // const [fadeAnim,setFadeAnim]=useState(new Animated.Value(0));
+
+    useEffect(()=>{
+        if(visible){
+            console.log('visible');
+            Animated.spring(fadeAnim, {
+                toValue: 1,
+                duration: 500,
+                useNativeDriver: true,
+              }).start();     
+        }else{
+            console.log('invisible');
+            Animated.timing(fadeAnim, {
+                toValue: 0,
+                duration: 500,
+                useNativeDriver: true,
+              }).start();
+        }
+      },[visible])
+
     return ( 
         <Modal transparent visible={visible}>
             <View style={styles.modalBackground}>
-                <View style={styles.modalContainer}>
+                <Animated.View style={[styles.modalContainer,{transform:[{scale:fadeAnim}]}]}>
                     <View style={styles.header}>
                         <TouchableOpacity onPress={()=>toggleModalHandler()}>
                         <Image
@@ -16,7 +38,7 @@ const ModalPopUp = ({visible,toggleModalHandler}) => {
                     source={require('../assets/success.png')}
                     style={{height:150,width:150,marginVertical:10}}/>
                     <Text style={{textAlign:'center',marginVertical:30,fontSize:20}}>Congratulations registration was successfull</Text>
-                </View>
+                </Animated.View>
             </View>
         </Modal>
      );

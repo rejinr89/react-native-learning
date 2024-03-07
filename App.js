@@ -1,13 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet,  View, Button,  } from 'react-native';
+import { StyleSheet,  View, Button,Animated  } from 'react-native';
 import ModalPopUp from './components/modalpopup';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function App() {
   const [visible,setVisible]=useState(false);
   const toggleModalHandler=()=>{
     setVisible(prevVisibleState=>!prevVisibleState);
   }
+
+  
 
   return (
     <View style={styles.container}>
