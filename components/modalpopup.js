@@ -13,22 +13,28 @@ const ModalPopUp = ({visible,toggleModalHandler}) => {
                 duration: 500,
                 useNativeDriver: true,
               }).start();     
-        }else{
-            console.log('invisible');
+        }
+      },[visible])
+
+      function updatetoggleModalHandler(){
+        if(visible){
+            setTimeout(()=>toggleModalHandler(),500);
             Animated.timing(fadeAnim, {
                 toValue: 0,
                 duration: 500,
                 useNativeDriver: true,
               }).start();
+        }else{
+            toggleModalHandler();
         }
-      },[visible])
+      }
 
     return ( 
         <Modal transparent visible={visible}>
             <View style={styles.modalBackground}>
                 <Animated.View style={[styles.modalContainer,{transform:[{scale:fadeAnim}]}]}>
                     <View style={styles.header}>
-                        <TouchableOpacity onPress={()=>toggleModalHandler()}>
+                        <TouchableOpacity onPress={()=>updatetoggleModalHandler()}>
                         <Image
                         source={require('../assets/x.png')}
                         style={{height:30,width:30}}/>
