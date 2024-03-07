@@ -2,131 +2,85 @@
 
 <img width="300px" src="custom-modal-screenshot1.jpg" alt="image_name png" />
 <img width="300px" src="custom-modal-screenshot2.jpg" alt="image_name png" />
-The project was created as part of learning React Native tutorial from the youtube channel Pradip Debnath:
+The project was created as part of learning React Native tutorial from the youtube channel kymzTech:
 
 https://www.youtube.com/watch?v=PaRyx0CUTnI](https://www.youtube.com/watch?v=Q4S9M9rJAxk)](https://www.youtube.com/watch?v=u79-3aqAsBY)
 
 ## Learning
 
-### Fetching data onload and updating splash screen upon loading completed
+### Creating modal and styling
 ```js
-const API_END_POINT = "https://randomuser.me/api/?results=30";
+<Modal transparent visible={visible}>
+            <View style={styles.modalBackground}>
+                <Animated.View style={[styles.modalContainer,{transform:[{scale:fadeAnim}]}]}>
+                    <View style={styles.header}>
+                        <TouchableOpacity onPress={()=>updatetoggleModalHandler()}>
+                        <Image
+                        source={require('../assets/x.png')}
+                        style={{height:30,width:30}}/>
+                        </TouchableOpacity>
+                    </View>
+                    <Image
+                    source={require('../assets/success.png')}
+                    style={{height:150,width:150,marginVertical:10}}/>
+                    <Text style={{textAlign:'center',marginVertical:30,fontSize:20}}>Congratulations registration was successfull</Text>
+                </Animated.View>
+            </View>
+        </Modal>
 
-  useEffect(() => {
-    async function prepare() {
-      try {
-        await SplashScreen.preventAutoHideAsync();
-        fetchData(API_END_POINT);
-      } catch (e) {
-        setIsError(true)
-        console.log(e);
-      } finally {
-        setIsReady(true);
-      }
+
+const styles=StyleSheet.create({
+    modalBackground:{
+        flex:1,
+        backgroundColor:'rgba(0,0,0,0.4)',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    modalContainer:{
+        width:'80%',
+        backgroundColor:'#fff',
+        paddingHorizontal:20,
+        paddingVertical:30,
+        borderRadius:20,
+        elevation:20,
+        alignItems:'center'
+    },
+    header:{
+        width:'100%',
+        height:40,
+        alignItems:'flex-end',
+        justifyContent:'center'
     }
-    prepare();
-  }, []);
-
-  useEffect(() => {
-    SplashScreen.hideAsync();
-  }, [isReady]);
-
-const fetchData = async (url) => {
-      fetch(url)
-        .then((response) => response.json())
-        .then((result) => {
-          setUserInfo(result.results);
-          setTempUserInfo(result.results);
-          setIsError(false);
-          setIsLoading(false);
-          console.log(userInfo);
-        }).catch(e=>{
-          console.log(e);
-          setIsError(true);
-        })
-  };
+})
 ```
 
-### Chcecking for error and displaying error info:
+### Updating animation:
 
 ```js
-{isError ? 
-          <View>
-            <Text style={{textAlign:'center'}}>Error in Loading....</Text>
-          </View>
-         : 
-         <View>
-            <FlatList
-              data={userInfo}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({ item }) => <Card item={item} />}
-            />
-          </View>
+ const fadeAnim = useRef(new Animated.Value(0)).current;
+    // const [fadeAnim,setFadeAnim]=useState(new Animated.Value(0));
+
+    useEffect(()=>{
+        if(visible){
+            console.log('visible');
+            Animated.spring(fadeAnim, {
+                toValue: 1,
+                duration: 500,
+                useNativeDriver: true,
+              }).start();     
         }
-```
+      },[visible])
 
-### Organising card in rows and columns:
-
-```js
-const Card = ({ item }) => {
-  return (
-    <View style={styles.cardContainer} >
-      <Image
-        style={styles.avatarImage}
-        source={{ uri: item.picture.thumbnail }}
-      />
-      <View style={styles.textContainer}>
-        <Text style={styles.textName}>
-          {item.name.first + " " + item.name.last}
-        </Text>
-        <Text style={styles.textEmail}>{item.email}</Text>
-      </View>
-    </View>
-  );
-};
-
-const styles = StyleSheet.create({
-  cardContainer: {
-    flexDirection: "row",
-    marginBottom: 10,
-    backgroundColor: "rgba(200,200,200,0.1)",
-    padding: 10,
-  },
-  avatarImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginRight: 10,
-  },
-  textContainer: {
-    justifyContent: "center",
-  },
-  textName: {
-    fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "left",
-  },
-});
-```
-
-### Implementing search functionality with lodash.filter:
-
-```js
-const changeTextHandler = (query) => {
-    setSearchText(query);
-    const formattedQuery=query.toLowerCase();
-    const filteredData=filter(tempUserInfo,(user)=>{
-      return contains(user,formattedQuery);
-    })
-    setUserInfo(filteredData);
-  };
-
-  const contains=({name,email},query)=>{
-    const {first,last}=name;
-    if(first.includes(query)||last.includes(query)||email.includes(query)){
-      return true;
-    }else{
-      return false;
-    }
-  }
+      function updatetoggleModalHandler(){
+        if(visible){
+            setTimeout(()=>toggleModalHandler(),500);
+            Animated.timing(fadeAnim, {
+                toValue: 0,
+                duration: 500,
+                useNativeDriver: true,
+              }).start();
+        }else{
+            toggleModalHandler();
+        }
+      }
 ```
