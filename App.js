@@ -30,30 +30,35 @@ export default function App() {
         data={images}
         keyExtractor={(item) => item.id}
         pagingEnabled
-        snapToInterval={width}
-        snapToAlignment={'end'}
-        decelerationRate={'slow'}
-        showsHorizontalScrollIndicator={false}
+        // snapToInterval={width}
+        // snapToAlignment={'end'}
+        // decelerationRate={'slow'}
+        // showsHorizontalScrollIndicator={false}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { x: scrollAnimation } } }],
           { useNativeDriver: true }
         )}
         renderItem={({ item,index }) => {
           const inputRange = [
-            (index - 1) * width,
+            (index - 0.5) * width,
             index * width,
-            (index + 1) * width
+            (index + 0.5) * width
           ];
           const translateX = scrollAnimation.interpolate({
             inputRange,
-            outputRange: [-width * 0.8, 0, width * 0.8]
+            outputRange: [-width*(0.5), 0, width*(0.5)]
+          })
+          const opacityCtrl = scrollAnimation.interpolate({
+            inputRange,
+            outputRange: [0, 1, 0]
           })
           return (
             <View style={styles.itemContainer}>
               <Animated.Image source={item.image} style={[styles.image,{transform:[{translateX}]}]} />
-              <Animated.View style={styles.titleContainer}>
-                <Animated.Text style={styles.title}>{item.title}</Animated.Text>
+              <Animated.View style={[styles.titleContainer,{opacity:opacityCtrl}]}>
+                <Text style={styles.title}>{item.title}</Text>
               </Animated.View>
+              <Animated.View style={[StyleSheet.absoluteFillObject,styles.itemOverlay]}/>
             </View>
           )
         }
@@ -70,6 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   itemContainer: {
+    overflow:'hidden',
     position: "relative",
     width,
     height,
@@ -84,6 +90,10 @@ const styles = StyleSheet.create({
   titleContainer: {
     position: "absolute",
     bottom: 80,
+    zIndex:1
+  },
+  itemOverlay:{
+    backgroundColor:'rgba(0,0,0,0.5)'
   },
   title: {
     fontSize: 24,
