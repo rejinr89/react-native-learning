@@ -1,7 +1,7 @@
 # Custom modal demo App
 
-<img width="300px" src="custom-modal-screenshot1.jpg" alt="image_name png" />
-<img width="300px" src="custom-modal-screenshot2.jpg" alt="image_name png" />
+<img width="300px" src="parallax-image-carousel-screenshot1.jpg" alt="image_name png" />
+<img width="300px" src="parallax-image-carousel-screenshot2.jpg" alt="image_name png" />
 The project was created as part of learning React Native tutorial from the youtube channel kymzTech:
 
 https://www.youtube.com/watch?v=PaRyx0CUTnI](https://www.youtube.com/watch?v=Q4S9M9rJAxk)](https://www.youtube.com/watch?v=u79-3aqAsBY)
