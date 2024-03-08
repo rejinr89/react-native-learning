@@ -96,3 +96,12 @@ const styles = StyleSheet.create({
             outputRange: [0, 1, 0]
           })
 ```
+
+### Challenges faced
+
+1. Image doesn't load without require.
+2. Need to understand more about animation interpolation
+
+### Learning further
+
+1. Learning animation in react native
