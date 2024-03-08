@@ -2,9 +2,10 @@
 
 <img width="300px" src="parallax-image-carousel-screenshot1.jpg" alt="image_name png" />
 <img width="300px" src="parallax-image-carousel-screenshot2.jpg" alt="image_name png" />
-The project was created as part of learning React Native tutorial from the youtube channel kymzTech:
+The project was created as part of learning React Native tutorial from the youtube channel 
+Coding with Artem:
 
-https://www.youtube.com/watch?v=PaRyx0CUTnI](https://www.youtube.com/watch?v=Q4S9M9rJAxk)](https://www.youtube.com/watch?v=u79-3aqAsBY)
+https://www.youtube.com/watch?v=osE2NKPsz-s
 
 ## Learning
 
