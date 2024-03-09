@@ -65,3 +65,11 @@ import { MaterialIcons } from "@expo/vector-icons"; //preinstalled
 
 <MaterialIcons name="delete" size={20} color='#333'/>
 ```
+
+### Challenges faced
+
+1. nil
+
+### Learning further
+
+1. Exploring react native further
