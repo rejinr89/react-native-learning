@@ -1,19 +1,32 @@
-import { StyleSheet, Text, View, TouchableOpacity, } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { useState } from "react";
 
-const TodoItem = ({ item,deleteIndividualHandler }) => {
+const TodoItem = ({ item, deleteIndividualHandler }) => {
+  const [completed, setCompleted] = useState(false);
+  const completeHandler = () => {
+    setCompleted(true);
+  };
+
   return (
-    <View style={styles.todoItem}>
-      <Text style={styles.todoItemText}>{item.todo}</Text>
-      <View style={styles.todoItemIconContainer}>
-        <TouchableOpacity>
-          <FontAwesome name="check-square" size={18} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={()=>deleteIndividualHandler(item.id)}>
-          <FontAwesome name="trash" size={18} color={'red'} />
-        </TouchableOpacity>
+    <TouchableOpacity onPress={() => completeHandler()}>
+      <View style={styles.todoItem}>
+        <Text
+          style={[
+            styles.todoItemText,
+            { textDecorationLine: completed ? "line-through" : "none" },
+          ]}
+        >
+          {item.todo}
+        </Text>
+        <View style={styles.todoItemIconContainer}>
+          {completed && <FontAwesome name="check-square" size={18} />}
+          <TouchableOpacity onPress={() => deleteIndividualHandler(item.id)}>
+            <FontAwesome name="trash" size={18} color={"red"} />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -31,12 +44,13 @@ const styles = StyleSheet.create({
   },
   todoItemText: {
     fontSize: 18,
+    fontWeight: "bold",
   },
-  todoItemIconContainer:{
-    flexDirection:'row',
-    gap:10,
-    justifyContent:'center',
-    alignItems:'center'
-  }
+  todoItemIconContainer: {
+    flexDirection: "row",
+    gap: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 export default TodoItem;

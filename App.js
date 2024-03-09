@@ -24,7 +24,7 @@ export default function App() {
   }
   const addTodo = () => {
     setTodos((prevTodos) => [
-      { id: Math.random().toString(), todo: todoText },
+      { id: Math.floor(Math.random()*1000).toString(), todo: todoText },
       ...prevTodos,
     ]);
   }
