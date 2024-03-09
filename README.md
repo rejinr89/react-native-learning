@@ -2,36 +2,73 @@
 
 <img width="300px" src="todoapp-tick-delete.jpg" alt="image_name png" />
 The project was created as part of learning React Native tutorial from the youtube channel 
-Pradip Debnath:
+Kymz Tech:
 
-https://www.youtube.com/watch?v=OV0qnHInNw0
+https://www.youtube.com/watch?v=2MjAAcF0L5s
 
 ## Learning
 
-### Adding icon using fontawesome
+### Styling list item
 ```js
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+const styles = StyleSheet.create({
+  todoItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    margin: 10,
+    backgroundColor: "rgba(245,245,245,.3)",
+    borderWidth: 0.5,
+    borderColor: "#ccc",
+    padding: 20,
+    borderRadius: 10,
+  },
+  todoItemText: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  todoItemIconContainer: {
+    flexDirection: "row",
+    gap: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
-<FontAwesome name="quote-left" style={styles.quoteSymbolLeft} />
-
-<FontAwesome name="volume-up" size={18} style={{color:isSpeaking?'red':'green'}} />
 ```
 
-### Getting random quote:
+### Marking task as completed with line-through
+```js
+const [completed, setCompleted] = useState(false);
+  const completeHandler = () => {
+    setCompleted(true);
+  };
+
+<TouchableOpacity onPress={() => completeHandler()}>
+      <View style={styles.todoItem}>
+        <Text
+          style={[
+            styles.todoItemText,
+            { textDecorationLine: completed ? "line-through" : "none" },
+          ]}
+        >
+          {item.todo}
+        </Text>
+        <View style={styles.todoItemIconContainer}>
+          {completed && <FontAwesome name="check-square" size={18} />}
+          <TouchableOpacity onPress={() => deleteIndividualHandler(item.id)}>
+            <FontAwesome name="trash" size={18} color={"red"} />
+          </TouchableOpacity>
+        </View>
+      </View>
+    </TouchableOpacity>
+```
+
+### Defining and using global colors:
 
 ```js
-const getQuote=async()=>{
-    try{
-      setIsLoading(true)
-      const result=await fetch('http://api.quotable.io/random');
-      const jsonData=await result.json();
-      setIsLoading(false);
-      setQuote(jsonData.content);
-      setAuthor(jsonData.author);
-    }catch(e){
-      console.log(e)
-    }
-  }
+const COLORS = { primary: "#457b9d", white: "#fff" };
+
+backgroundColor: COLORS.primary,
 ```
 
 ### Adding text to speech:
