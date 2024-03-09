@@ -98,3 +98,11 @@ useEffect(()=>{
     }
 },[pinCode])
 ```
+
+### Challenges faced
+
+1. Struggled with adding circular display of numbers typed
+
+### Learning further
+
+1. Learning material icons 
