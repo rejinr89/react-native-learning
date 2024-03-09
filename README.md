@@ -71,47 +71,93 @@ const COLORS = { primary: "#457b9d", white: "#fff" };
 backgroundColor: COLORS.primary,
 ```
 
-### Adding text to speech:
+### Styling todo app:
 
 ```js
-import * as Speech from 'expo-speech';
+<SafeAreaView style={styles.container}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Todo App</Text>
+        <TouchableOpacity style={styles.trash} onPress={clearAllHandler}>
+          <FontAwesome name="trash" size={24} color={"red"} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.todoItemContainer}>
+        <FlatList
+          data={todos}
+          renderItem={({ item }) => <TodoItem item={item} deleteIndividualHandler={deleteIndividualHandler} />}
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter todo item"
+          onChangeText={(text) => {
+            changeTextHandler(text);
+          }}
+        />
+        <TouchableOpacity style={styles.addTodoBtn} onPress={addTodo}>
+          <Text style={styles.addTodoText}>+</Text>
+        </TouchableOpacity>
+      </View>
+      <StatusBar style="auto" />
+    </SafeAreaView>
+  );
+}
 
-const [isSpeaking,setIsSpeaking]=useState(false);
-
-const speakUp=()=>{
-    const thingToSay = quote;
-    Speech.stop();
-    Speech.isSpeakingAsync().then(()=>setIsSpeaking(true));
-    Speech.speak(thingToSay+'     '+author,{onDone:()=>setIsSpeaking(false)});
-  }
-```
-### Copy to clipboard
-
-```js
-import * as Clipboard from 'expo-clipboard';
-
-const copyToClipboard = async () => {
-    await Clipboard.setStringAsync(quote);
-  };
-```
-
-### Posting in twitter
-
-```js
-import { StyleSheet, Text, View, TouchableOpacity, Linking } from "react-native";
-
-const tweetNow=()=>{
-    const url='https://twitter.com/intent/tweet?text='+quote;
-    Linking.openURL(url);
-  }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  titleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    margin: 20,
+  },
+  title: {
+    fontSize: 24,
+    textTransform: "uppercase",
+    fontWeight: "bold",
+  },
+  todoItemContainer: {
+    flex: 1,
+  },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    paddingHorizontal: 20,
+    color: "#fff",
+    gap: 20,
+  },
+  input: {
+    padding: 10,
+    backgroundColor: "#fff",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 30,
+    width: "80%",
+  },
+  addTodoBtn: {
+    backgroundColor: COLORS.primary,
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  addTodoText: {
+    fontSize: 28,
+  },
+});
 ```
 
 ### Challenges faced
 
-1. Struggled with text to speech library. Used expo specific library to solve
-2. Struggled with clipboard library. Used expo specific library to solve.
-
+1. Struggled with aligning input box at bottom and aligning button
 
 ### Learning further
 
-1. Learning more ui design with React Native
+1. Learning and practicing more styling in React Native
