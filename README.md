@@ -1,4 +1,4 @@
-# Custom modal demo App
+# Quote Generator App
 
 <img width="300px" src="quote-generator-screenshot.jpg" alt="image_name png" />
 The project was created as part of learning React Native tutorial from the youtube channel 
