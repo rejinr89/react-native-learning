@@ -84,3 +84,12 @@ const styles=StyleSheet.create({
         }
       }
 ```
+
+### Challenges faced
+
+1. Struggled with error handling within the catch block
+2. Struggled with close animation delay.
+
+### Learning further
+
+1. Animation in react native
