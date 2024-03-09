@@ -1,15 +1,15 @@
 import { StyleSheet, Text, View, TouchableOpacity, } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-const TodoItem = ({ item }) => {
+const TodoItem = ({ item,deleteIndividualHandler }) => {
   return (
     <View style={styles.todoItem}>
-      <Text style={styles.todoItemText}>{item}</Text>
+      <Text style={styles.todoItemText}>{item.todo}</Text>
       <View style={styles.todoItemIconContainer}>
         <TouchableOpacity>
           <FontAwesome name="check-square" size={18} />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>deleteIndividualHandler(item.id)}>
           <FontAwesome name="trash" size={18} color={'red'} />
         </TouchableOpacity>
       </View>
