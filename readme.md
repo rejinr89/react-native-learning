@@ -129,3 +129,11 @@ const changeTextHandler = (query) => {
     }
   }
 ```
+
+### Challenges faced
+
+1. Struggled with error handling within the catch block.
+
+### Learning further
+
+1. Learning lodash.filter
