@@ -76,8 +76,8 @@ const {colorScheme,toggleColorScheme}=useColorScheme();
 
 ### Challenges faced
 
-1. Struggled with aligning input box at bottom and aligning button
+1. Nil
 
 ### Learning further
 
-1. Learning and practicing more styling in React Native
+1. Learning and practicing more styling with Tailwind
