@@ -24,7 +24,7 @@ npm install nativewind
 npm install --save-dev tailwindcss@3.3.2
 ```
 set up tailwind css
-```
+```cmd
 // tailwind.config.js
 
 module.exports = {
@@ -34,9 +34,9 @@ module.exports = {
   },
   plugins: [],
 }
-```
+```cmd
 Add Babel plugin
-```
+```cmd
 // babel.config.js
 module.exports = function (api) {
   api.cache(true);
@@ -46,7 +46,7 @@ module.exports = function (api) {
   };
 };
 
-```
+```cmd
 
 ### Styling with tailwind
 ```html
