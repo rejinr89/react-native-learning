@@ -5,9 +5,9 @@
 <img width="300px" src="theme-switcher-2.jpg" alt="image_name png" />
 
 The project was created as part of learning React Native tutorial from the youtube channel 
-Kymz Tech:
+Code With Nomi:
 
-https://www.youtube.com/watch?v=2MjAAcF0L5s
+https://www.youtube.com/watch?v=2MHBfatlC5g
 
 ## Learning
 
@@ -18,8 +18,11 @@ Goto
 ```url
 https://www.nativewind.dev/quick-starts/expo
 ```
-
-
+Install tailwind and nativewind
+```cmd
+npm install nativewind
+npm install --save-dev tailwindcss@3.3.2
+```
 ### Styling list item
 ```js
 const styles = StyleSheet.create({
