@@ -1,4 +1,4 @@
-# Quote Generator App
+# To do list App with complete and delete option
 
 <img width="300px" src="todoapp-tick-delete.jpg" alt="image_name png" />
 The project was created as part of learning React Native tutorial from the youtube channel 
