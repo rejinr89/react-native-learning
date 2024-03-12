@@ -46,7 +46,20 @@ module.exports = function (api) {
   };
 };
 
-```cmd
+```
+
+### useColorScheme from nativewind
+```js
+import { useColorScheme } from 'nativewind';
+```
+
+```js
+const {colorScheme,toggleColorScheme}=useColorScheme();
+```
+
+```js
+<Switch value={colorScheme=='dark'} onChange={toggleColorScheme}/>
+```
 
 ### Styling with tailwind
 ```html
@@ -59,124 +72,6 @@ module.exports = function (api) {
       <StatusBar style='auto'/>
       <View className='h-48 w-full bg-sky-400 dark:bg-emerald-400'></View>
     </View>
-```
-
-### Marking task as completed with line-through
-```js
-const [completed, setCompleted] = useState(false);
-  const completeHandler = () => {
-    setCompleted(true);
-  };
-
-<TouchableOpacity onPress={() => completeHandler()}>
-      <View style={styles.todoItem}>
-        <Text
-          style={[
-            styles.todoItemText,
-            { textDecorationLine: completed ? "line-through" : "none" },
-          ]}
-        >
-          {item.todo}
-        </Text>
-        <View style={styles.todoItemIconContainer}>
-          {completed && <FontAwesome name="check-square" size={18} />}
-          <TouchableOpacity onPress={() => deleteIndividualHandler(item.id)}>
-            <FontAwesome name="trash" size={18} color={"red"} />
-          </TouchableOpacity>
-        </View>
-      </View>
-    </TouchableOpacity>
-```
-
-### Defining and using global colors:
-
-```js
-const COLORS = { primary: "#457b9d", white: "#fff" };
-
-backgroundColor: COLORS.primary,
-```
-
-### Styling todo app:
-
-```js
-<SafeAreaView style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Todo App</Text>
-        <TouchableOpacity style={styles.trash} onPress={clearAllHandler}>
-          <FontAwesome name="trash" size={24} color={"red"} />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.todoItemContainer}>
-        <FlatList
-          data={todos}
-          renderItem={({ item }) => <TodoItem item={item} deleteIndividualHandler={deleteIndividualHandler} />}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter todo item"
-          onChangeText={(text) => {
-            changeTextHandler(text);
-          }}
-        />
-        <TouchableOpacity style={styles.addTodoBtn} onPress={addTodo}>
-          <Text style={styles.addTodoText}>+</Text>
-        </TouchableOpacity>
-      </View>
-      <StatusBar style="auto" />
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-  },
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    margin: 20,
-  },
-  title: {
-    fontSize: 24,
-    textTransform: "uppercase",
-    fontWeight: "bold",
-  },
-  todoItemContainer: {
-    flex: 1,
-  },
-  inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-    paddingHorizontal: 20,
-    color: "#fff",
-    gap: 20,
-  },
-  input: {
-    padding: 10,
-    backgroundColor: "#fff",
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 30,
-    width: "80%",
-  },
-  addTodoBtn: {
-    backgroundColor: COLORS.primary,
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  addTodoText: {
-    fontSize: 28,
-  },
-});
 ```
 
 ### Challenges faced
