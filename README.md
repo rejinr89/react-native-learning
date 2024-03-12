@@ -11,6 +11,15 @@ https://www.youtube.com/watch?v=2MjAAcF0L5s
 
 ## Learning
 
+### Tailwind installation
+
+Goto
+
+```url
+https://www.nativewind.dev/quick-starts/expo
+```
+
+
 ### Styling list item
 ```js
 const styles = StyleSheet.create({
