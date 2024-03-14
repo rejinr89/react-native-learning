@@ -114,6 +114,60 @@ export const Products= [
   },
 ];
 ```
+### Saving and using FontSize and Spacing parameters
+
+#### Font Size
+```js
+const xs= 12;
+const sm= 14;
+const base= 16;
+const lg= 20;
+const xl= 30;
+const xxl= 35;
+
+export default {
+  xs,
+  sm,
+  base,
+  lg,
+  xl,
+  xxl,
+};
+```
+
+#### Spacing
+```js
+const sm = 5;
+const base = 10;
+const lg = 20;
+const xl = 30;
+const xxl = 40;
+export default {
+  padding: {
+    xs: 5,
+    sm: 10,
+    base: 15,
+    lg: 30,
+    xl: 50,
+    xxl: 70,
+  },
+  margin: {
+    sm,
+    base,
+    lg,
+    xl,
+    xxl,
+  },
+  borderRadius: { sm, base, lg, xl, xxl },
+};
+```
+
+#### Using fontSize and spacing example
+```css
+padding:Spacing.padding.base,
+
+fontSize: FontSize.base,
+```
 ### Challenges faced
 
 1. In between the updates in code, images were not loading.
