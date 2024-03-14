@@ -168,10 +168,77 @@ padding:Spacing.padding.base,
 
 fontSize: FontSize.base,
 ```
+
+### Masonry List
+Install Masonry list
+```cmd
+npm i @react-native-seoul/masonry-list
+```
+Usage
+```js
+import MasonryList from "@react-native-seoul/masonry-list";
+
+<MasonryList
+            data={[{id:0,name:`Found ${results.length} results`},...results]}
+            keyExtractor={(item) => item.id}
+            numColumns={2}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item,i }) => (<>
+              {
+                i==0?<Text style={{fontSize:32,padding:Spacing.padding.base}}>{item.name}</Text>:
+              <TouchableOpacity
+                style={{
+                  padding:Spacing.padding.base,
+                  backgroundColor: Colors.primary,
+                  width: "90%",
+                  margin: Spacing.margin.base,
+                  borderRadius:Spacing.borderRadius.xl
+                }}
+              >
+                <Image
+                  source={item.image}
+                  style={{ width: "100%", height: 220 }}
+                />
+                <Text style={{fontWeight:'bold',fontSize:FontSize.lg,color:Colors.text}}>{item.title}</Text>
+                <Text style={{color:Colors.textGray,marginVertical:Spacing.margin.base}}>{item.subTitle}</Text>
+                <View style={{
+                  flexDirection:'row',
+                  alignItems:'center', 
+                  justifyContent:'space-between'
+                }}>
+                  <Text style={{fontSize:FontSize.lg, fontWeight:'bold'}}>{item.price}</Text>
+                  <TouchableOpacity style={{
+                    height:35,
+                    width:35,
+                    backgroundColor:Colors.accent,
+                    justifyContent:'center',
+                    alignItems:'center',
+                    borderRadius:Spacing.borderRadius.xl
+                  }}>
+                    <Ionicons name="heart" size={20} color={Colors.onAccent}/>
+                  </TouchableOpacity>
+                </View>
+              </TouchableOpacity>
+              }
+            </>
+            )}
+          />
+```
+
+### Searching
+
+```js
+const [search, setSearch] = useState("");
+  const [results, setResults] = useState(Products);
+  useEffect(()=>{
+    setResults(Products.filter(product=>product.title.includes(search)))
+  },[search])
+```
+
 ### Challenges faced
 
-1. In between the updates in code, images were not loading.
+1. Masonry list wasnot loading due to some typo
 
 ### Learning further
 
-1. Explore react native slider or create new slider
+1. Analyse why MasonryList is required, why not Flatlist?
