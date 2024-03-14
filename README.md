@@ -1,6 +1,6 @@
 # Skin care App UI-screen 2 
 
-<img width="300px" src="skincareapp-ui-2-screenshot-1.jpg" alt="image_name png" />
+<img width="300px" src="skincareapp-ui-2-screenshot-1.jpg.jpg" alt="image_name png" />
 
 The project was created as part of learning React Native tutorial from the youtube channel 
 Tugane Amiel:
