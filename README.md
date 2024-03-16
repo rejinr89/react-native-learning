@@ -4,57 +4,73 @@
 The project was created as part of learning React Native tutorial using the youtube tutorial:
 Code Spring
 
-https://www.youtube.com/watch?v=rOy8neGw6XQ
+https://www.youtube.com/watch?v=JA0uZRUwUkM
 
 ## Learning
 
-### Installing reanimated package
-```cmd
-npm i react-native-reanimated
-```
-using animated
+### Code
 ```js
-import Animated,{useSharedValue,FadeInUp,FadeOutUp} from "react-native-reanimated";
+import { StatusBar } from "expo-status-bar";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 
-<Animated.View 
-    entering={FadeInUp}
-    exiting={FadeOutUp}
-    style={{
-      top:70,
-      backgroundColor:'#20639B',
-      width:'90%',
-      borderRadius:5,
-      padding:20,
-      flexDirection:'row',
-      justifyContent:'flex-start',
-      alignItems:'center',
-      shadowColor:'#003049',
-      shadowOpacity:0.4,
-      shadowRadius:2,
-      shadowOffset:{width:0,height:1},
-      elevation:2
-    }}>
-      <MaterialIcons name="info" size={30} color={'#F6F4F4'}/>
-      <View>
-        <Text style={{
-          fontSize:18,
-          color:'#F6F4F4',
-          fontWeight:'bold',
-          marginLeft:10,
-        }}>Info</Text>
-        <Text
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Image
+        source={require("./assets/images/404.png")}
+        style={{ width: Dimensions.get("screen").width - 80, height: 320 }}
+      />
+      <Text
+        style={{ fontWeight: "bold", fontSize: 25, textAlign: "center" }}
+      >{`Oops! You weren't \n supposed to see this`}</Text>
+      <Text style={{ fontWeight: "600", fontSize: 12, marginVertical: 10 }}>
+        The page you were looking was loading incorrectly
+      </Text>
+      <TouchableOpacity
+        onPress={() => {}}
         style={{
-          fontSize:14,
-          color:'#F6F4F4',
-          marginLeft:10,
+          backgroundColor: "#000",
+          paddingVertical: 5,
+          paddingHorizontal: 20,
+          borderRadius: 10,
         }}
-        >This is an animated toast messag</Text>
-      </View>
-    </Animated.View>
+      >
+        <Text
+          style={{
+            color: "#fff",
+            fontWeight: "600",
+            fontSize: 14,
+            marginVertical: 10,
+          }}
+        >
+          Go Back
+        </Text>
+      </TouchableOpacity>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fcb82f",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
 ```
 ### Challenges faced
 
-1. Installing reanimated package
+1. Nil
 
 ### Learning further
 
