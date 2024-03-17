@@ -5,73 +5,81 @@
 The project was created as part of learning React Native tutorial using the youtube tutorial:
 Code Spring
 
-https://www.youtube.com/watch?v=JA0uZRUwUkM
+https://www.youtube.com/watch?v=cj6PBFi3OZg
 
 ## Learning
 
+Animating expandable buttons
 ### Code
 ```js
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View,TouchableOpacity,Animated } from 'react-native';
 
-export default function App() {
-  return (
+const [icon1]=useState(new Animated.Value(40));
+
+const popIn=()=>{
+  setPop(true);
+  Animated.timing(icon1,{
+    toValue:130,
+    duration:500,
+    useNativeDriver:false
+  }).start()
+  Animated.timing(icon2,{
+    toValue:110,
+    duration:500,
+    useNativeDriver:false
+  }).start()
+  Animated.timing(icon3,{
+    toValue:130,
+    duration:500,
+    useNativeDriver:false
+  }).start()
+ }
+ const popOut=()=>{
+  setPop(false);
+  Animated.timing(icon1,{
+    toValue:40,
+    duration:500,
+    useNativeDriver:false
+  }).start()
+  Animated.timing(icon2,{
+    toValue:40,
+    duration:500,
+    useNativeDriver:false
+  }).start()
+  Animated.timing(icon3,{
+    toValue:40,
+    duration:500,
+    useNativeDriver:false
+  }).start()
+ }
+
+return (
     <View style={styles.container}>
-      <Image
-        source={require("./assets/images/404.png")}
-        style={{ width: Dimensions.get("screen").width - 80, height: 320 }}
-      />
-      <Text
-        style={{ fontWeight: "bold", fontSize: 25, textAlign: "center" }}
-      >{`Oops! You weren't \n supposed to see this`}</Text>
-      <Text style={{ fontWeight: "600", fontSize: 12, marginVertical: 10 }}>
-        The page you were looking was loading incorrectly
-      </Text>
-      <TouchableOpacity
-        onPress={() => {}}
-        style={{
-          backgroundColor: "#000",
-          paddingVertical: 5,
-          paddingHorizontal: 20,
-          borderRadius: 10,
-        }}
-      >
-        <Text
-          style={{
-            color: "#fff",
-            fontWeight: "600",
-            fontSize: 14,
-            marginVertical: 10,
-          }}
-        >
-          Go Back
-        </Text>
+      <Animated.View style={[styles.circle,{bottom:icon1}]}>
+        <TouchableOpacity>
+          <MaterialIcon name='cloud-upload' size={25} color={'#fff'}/>
+        </TouchableOpacity>
+      </Animated.View>
+      <Animated.View style={[styles.circle,{bottom:icon2,right:icon2}]}>
+        <TouchableOpacity>
+          <MaterialIcon name='print' size={25} color={'#fff'}/>
+        </TouchableOpacity>
+      </Animated.View>
+      <Animated.View style={[styles.circle,{right:icon3}]}>
+        <TouchableOpacity>
+          <MaterialIcon name='share' size={25} color={'#fff'}/>
+        </TouchableOpacity>
+      </Animated.View>
+      <TouchableOpacity style={styles.circle} onPress={pop?popOut:popIn}>
+      <MaterialIcon name='add' size={25} color={'#FFF'}/>
       </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fcb82f",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
-
 ```
 ### Challenges faced
 
-1. Nil
+1. Challenge with true option for native driver in animation
 
 ### Learning further
 
