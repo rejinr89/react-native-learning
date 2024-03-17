@@ -1,5 +1,6 @@
 # Animated Expandable Floating Action Button
-<img width="300px" src="animated-expandable-floating-action-button-screenshot-1.jpg" alt="image_name png" />
+<img width="300px" src="animated-expandable-floating-action-button-screen1.jpg" alt="image_name png" />
+<img width="300px" src="animated-expandable-floating-action-button-screen2.jpg" alt="image_name png" />
 
 The project was created as part of learning React Native tutorial using the youtube tutorial:
 Code Spring
