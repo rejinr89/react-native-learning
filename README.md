@@ -3,83 +3,69 @@
 <img width="300px" src="animated-toast-notification-screen2.jpg" alt="image_name png" />
 
 The project was created as part of learning React Native tutorial using the youtube tutorial:
-Code Spring
+Evening Kid
 
-https://www.youtube.com/watch?v=cj6PBFi3OZg
+https://www.youtube.com/watch?v=06R21cIFlwo
 
 ## Learning
 
-Animating expandable buttons
+Animated toast notifications
 ### Code
 ```js
-import { StyleSheet, Text, View,TouchableOpacity,Animated } from 'react-native';
+const Message = (props) => {
+  const opacity = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    Animated.sequence([
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true,
+      }),
+      Animated.delay(2000),
+      Animated.timing(opacity, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: true,
+      }),
+    ]).start(() => props.onHide);
+  }, []);
 
-const [icon1]=useState(new Animated.Value(40));
-
-const popIn=()=>{
-  setPop(true);
-  Animated.timing(icon1,{
-    toValue:130,
-    duration:500,
-    useNativeDriver:false
-  }).start()
-  Animated.timing(icon2,{
-    toValue:110,
-    duration:500,
-    useNativeDriver:false
-  }).start()
-  Animated.timing(icon3,{
-    toValue:130,
-    duration:500,
-    useNativeDriver:false
-  }).start()
- }
- const popOut=()=>{
-  setPop(false);
-  Animated.timing(icon1,{
-    toValue:40,
-    duration:500,
-    useNativeDriver:false
-  }).start()
-  Animated.timing(icon2,{
-    toValue:40,
-    duration:500,
-    useNativeDriver:false
-  }).start()
-  Animated.timing(icon3,{
-    toValue:40,
-    duration:500,
-    useNativeDriver:false
-  }).start()
- }
-
-return (
-    <View style={styles.container}>
-      <Animated.View style={[styles.circle,{bottom:icon1}]}>
-        <TouchableOpacity>
-          <MaterialIcon name='cloud-upload' size={25} color={'#fff'}/>
-        </TouchableOpacity>
-      </Animated.View>
-      <Animated.View style={[styles.circle,{bottom:icon2,right:icon2}]}>
-        <TouchableOpacity>
-          <MaterialIcon name='print' size={25} color={'#fff'}/>
-        </TouchableOpacity>
-      </Animated.View>
-      <Animated.View style={[styles.circle,{right:icon3}]}>
-        <TouchableOpacity>
-          <MaterialIcon name='share' size={25} color={'#fff'}/>
-        </TouchableOpacity>
-      </Animated.View>
-      <TouchableOpacity style={styles.circle} onPress={pop?popOut:popIn}>
-      <MaterialIcon name='add' size={25} color={'#FFF'}/>
-      </TouchableOpacity>
-      <StatusBar style="auto" />
-    </View>
+  return (
+    <Animated.View
+      style={{
+        opacity,
+        transform: [
+          {
+            translateY: opacity.interpolate({
+              inputRange: [0, 1],
+              outputRange: [-20, 0],
+            }),
+          },
+        ],
+        margin: 10,
+        marginBottom: 5,
+        backgroundColor: "white",
+        padding: 10,
+        borderRadius: 4,
+        shadowColor: "black",
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowOpacity: 0.15,
+        shadowRadius: 5,
+        elevation: 6,
+      }}
+    >
+      <Text>{props.message}</Text>
+    </Animated.View>
   );
+};
 ```
+
 ### Challenges faced
 
-1. Challenge with true option for native driver in animation
+1. Align button in screen. Can't style button. Need to wrap it with View
 
 ### Learning further
 
